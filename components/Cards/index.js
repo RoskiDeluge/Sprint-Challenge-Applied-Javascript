@@ -21,19 +21,25 @@
 axios
   .get("https://lambda-times-backend.herokuapp.com/articles")
   .then(response => {
-    // console.log(response);
-    let newArticles = response.data.articles.jquery;
-    // console.log(newArticles);
-    newArticles.forEach(article => {
-    cardContainer.appendChild(newCard(article.authorName, article.authorPhoto, article.headline));
-    });
-  });
+    
+    let bootstrap = response.data.articles.bootstrap;
+    let javascript = response.data.articles.javascript;
+    let jquery = response.data.articles.jquery;
+    let node = response.data.articles.node;
+    let technology = response.data.articles.technology;
+    
 
-  // data.articles.bootstrap Array 3 objects authorName, authorPhoto, headline
-  // data.articles.javascript
-  // data.articles.jquery
-  // data.articles.node
-  // data.articles.technology
+    const generator = (article) => {
+      cardContainer.appendChild(newCard(article.authorName, article.authorPhoto, article.headline));  
+    };
+
+    bootstrap.forEach(generator);
+    javascript.forEach(generator);
+    jquery.forEach(generator);
+    node.forEach(generator);
+    technology.forEach(generator);
+
+  });
 
 const newCard = (name, photo, headline) => {
   const card = document.createElement('div');
