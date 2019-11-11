@@ -56,6 +56,7 @@ const newCard = (name, photo, headline) => {
   card.classList.add('card');
   cardHeadline.classList.add('headline');
   cardAuthor.classList.add('author');
+  cardImg.classList.add('img-container');
   
   cardHeadline.textContent = headline;
   cardImg.src = photo;
