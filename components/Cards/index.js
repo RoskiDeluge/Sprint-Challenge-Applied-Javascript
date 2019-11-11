@@ -18,6 +18,23 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
+axios
+  .get("https://lambda-times-backend.herokuapp.com/articles")
+  .then(response => {
+    // console.log(response);
+    let newArticles = response.data.articles.jquery;
+    // console.log(newArticles);
+    newArticles.forEach(article => {
+    cardContainer.appendChild(newCard(article.authorName, article.authorPhoto, article.headline));
+    });
+  });
+
+  // data.articles.bootstrap Array 3 objects authorName, authorPhoto, headline
+  // data.articles.javascript
+  // data.articles.jquery
+  // data.articles.node
+  // data.articles.technology
+
 const newCard = (name, photo, headline) => {
   const card = document.createElement('div');
   const cardHeadline = document.createElement('div');
@@ -36,30 +53,15 @@ const newCard = (name, photo, headline) => {
   
   cardHeadline.textContent = headline;
   cardImg.src = photo;
-  cardAuthorName = name;
-  
+  cardAuthorName.textContent = name;
+
 
   return card
 
 }
 
-axios
-  .get("https://lambda-times-backend.herokuapp.com/articles")
-  .then(response => {
-    console.log(response);
-    // const newArticlesB = response.data.articles.bootstrap;
-    // newTopics.forEach(topic => {
-    //   let li = document.createElement('div');
-    //   li.textContent = topic;
-    //   parentElement.appendChild(li);
-    // })
-  });
+const cardContainer = document.querySelector('.cards-container');
 
-  // data.articles.bootstrap Array 3 objects authorName, authorPhoto, headline
-  // data.articles.javascript
-  // data.articles.jquery
-  // data.articles.node
-  // data.articles.technology
 
  
 
