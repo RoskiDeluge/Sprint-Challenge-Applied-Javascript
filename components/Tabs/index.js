@@ -15,6 +15,7 @@ axios
     const newTopics = response.data.topics;
     newTopics.forEach(topic => {
       let li = document.createElement('div');
+      li.classList.add('tab');
       li.textContent = topic;
       parentElement.appendChild(li);
     })
